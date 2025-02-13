@@ -18,8 +18,7 @@ public class ProduitServlet extends HttpServlet {
      * @see HttpServlet#HttpServlet()
      */
     public ProduitServlet() {
-        super();
-        // TODO Auto-generated constructor stub
+       
     }
     
     /**
