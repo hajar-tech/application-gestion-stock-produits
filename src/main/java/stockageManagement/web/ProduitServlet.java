@@ -7,27 +7,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dtockageManagement.dao.ProduitDao;
+
 /**
  * Servlet implementation class ProduitServlet
  */
 @WebServlet("/ProduitServlet")
 public class ProduitServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private ProduitDao produitDao;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public ProduitServlet() {
-        super();
-        // TODO Auto-generated constructor stub
+    	this.produitDao = new ProduitDao();
+       
     }
     
     /**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
 	}
 
 
@@ -35,8 +37,7 @@ public class ProduitServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 	}
 
 	
