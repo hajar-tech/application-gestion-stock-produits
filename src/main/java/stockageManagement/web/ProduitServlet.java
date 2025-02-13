@@ -1,6 +1,8 @@
 package stockageManagement.web;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,6 +31,7 @@ public class ProduitServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		this.doGet(request, response);
 		
 	}
 
@@ -37,8 +40,32 @@ public class ProduitServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String action = request.getServletPath();
+		switch (action) {
+		case "/new" : 
+			showNewForm(request, response);
+			break;
+		case "/insert" : 
+			break;
+		case "/delete" : 
+			break;
+		case "/edit" : 
+			break;
+		case "/update" : 
+			break;	
+		default:
+			break;
+		}
 		
 	}
+	 private void showNewForm(HttpServletRequest request, HttpServletResponse response)
+			    throws ServletException, IOException {
+			        RequestDispatcher dispatcher = request.getRequestDispatcher("user-form.jsp");
+			        dispatcher.forward(request, response);
+	 }
+	 
+	 
+	
 
 	
 }
