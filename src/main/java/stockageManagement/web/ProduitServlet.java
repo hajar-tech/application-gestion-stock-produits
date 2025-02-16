@@ -36,10 +36,19 @@ public class ProduitServlet extends HttpServlet {
     /**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		this.doGet(request, response);
-		
-	}
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String nameProduit = request.getParameter("nameProduit");
+        String description = request.getParameter("descriptionProduit");
+        String prix = request.getParameter("prix");
+        String quantite = request.getParameter("quantite");
+        String categorie = request.getParameter("categorie");
+
+        System.out.println("Nom: " + nameProduit);
+        System.out.println("Description: " + description);
+        System.out.println("Prix: " + prix);
+        System.out.println("Quantité: " + quantite);
+        System.out.println("Catégorie: " + categorie);
+    }
 
 
 	/**
@@ -156,13 +165,13 @@ public class ProduitServlet extends HttpServlet {
 	  
 	  private void updateProduit(HttpServletRequest request, HttpServletResponse response)
 			    throws SQLException, IOException {
-			        int id = Integer.parseInt(request.getParameter("idProuit"));
+			        int idProuit = Integer.parseInt(request.getParameter("idProuit"));
 			        String nameProduit = request.getParameter("nameProduit");
 			        String descriptionProduit = request.getParameter("descriptionProduit");
 			        BigDecimal prix = new BigDecimal(request.getParameter("prix"));//Cela convertit la valeur String en BigDecimal
 			        int quantite = Integer.parseInt(request.getParameter("quantite"));// covetrir la valeur string en int 
 			        Categorie categorie = Categorie.valueOf(request.getParameter("categorie")) ;
-			        Produit produit = new Produit(id,nameProduit, descriptionProduit, prix, quantite,categorie );
+			        Produit produit = new Produit(idProuit,nameProduit, descriptionProduit, prix, quantite,categorie );
 
 		
 			        produitDao.updateProduit(produit);

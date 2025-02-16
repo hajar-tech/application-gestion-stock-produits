@@ -15,14 +15,12 @@ import stockageManagement.model.Produit.Categorie;
 public class ProduitDao {
 	
 	//creation des variables pour la connexion
-	private String jdbcUrl = "jdbc:mysql://localhost:3306/stockmanagement?useSSL=false";
+	private String jdbcUrl = "jdbc:mysql://localhost:3306/stockmanagement";
 	private String jdbcUserName= "root";
 	private String jdbcPassWord ="root2002";
 	
 	
-	 private static final String INSERT_PRODUITS_SQL = "INSERT INTO produits" + "  (nameProduit, descriptionProduit, prix, quantite, categorie) VALUES " +
-		        " (?, ?, ?, ?, ?);";
-
+	 private static final String INSERT_PRODUITS_SQL ="INSERT INTO produits (nameProduit, descriptionProduit, prix, quantite, categorie) VALUES (?, ?, ?, ?, ?)";
 		    private static final String SELECT_PRODUITS_BY_ID = "select idProduit,nameProduit,descriptionProduit,prix,quantite,categorie from produits where idProduit =?";
 		    private static final String SELECT_ALL_PRODUITS = "select * from produits";
 		    private static final String DELETE_PRODUITS_SQL = "delete from produits where idProduit = ?;";
@@ -32,8 +30,9 @@ public class ProduitDao {
 		    protected Connection getConnection() {
 		        Connection connection = null;
 		        try {
-		            Class.forName("com.mysql.jdbc.Driver");
-		            connection = DriverManager.getConnection(jdbcUrl, jdbcUserName, jdbcPassWord);
+		        	Class.forName("com.mysql.jdbc.Driver");
+		            connection = DriverManager.getConnection(jdbcUrl,jdbcUserName,jdbcPassWord);
+		            connection.setAutoCommit(true);
 		        } catch (SQLException e) {
 		            // TODO Auto-generated catch block
 		            e.printStackTrace();
@@ -42,7 +41,9 @@ public class ProduitDao {
 		            e.printStackTrace();
 		        }
 		        return connection;
+		        
 		    }
+		    
 		    
       //codage du CRUD
 	//créer ou ajouter un produit
@@ -139,5 +140,8 @@ public class ProduitDao {
 		        }
 		        return rowDeleted;
 		    }
+		    
+		    
+		   
 }
 
